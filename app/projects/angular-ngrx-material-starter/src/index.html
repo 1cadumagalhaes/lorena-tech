@@ -86,5 +86,28 @@
 
   ga('create', 'UA-53234284-5', 'auto');
 </script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyA1loHBBD1oIdvxpTSGXBY8k3XXrRWb2Tk",
+    authDomain: "lorena-tech.firebaseapp.com",
+    databaseURL: "https://lorena-tech.firebaseio.com",
+    projectId: "lorena-tech",
+    storageBucket: "lorena-tech.appspot.com",
+    messagingSenderId: "766983610617",
+    appId: "1:766983610617:web:edf9a7e0be4b2a53584228",
+    measurementId: "G-LYSF1JEDVJ"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
 </body>
 </html>
