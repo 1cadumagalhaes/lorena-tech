@@ -1,9 +1,11 @@
 import browser from 'browser-detect';
-import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import {Component, Inject, OnInit} from '@angular/core';
+import {Store, select} from '@ngrx/store';
+import {Observable} from 'rxjs';
 
-import { environment as env } from '../../environments/environment';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+import {environment as env} from '../../environments/environment';
 
 import {
   authLogin,
@@ -21,6 +23,11 @@ import {
   actionSettingsChangeLanguage
 } from '../core/settings/settings.actions';
 
+
+export interface DialogData {
+  count:number
+}
+
 @Component({
   selector: 'anms-root',
   templateUrl: './app.component.html',
@@ -31,58 +38,87 @@ export class AppComponent implements OnInit {
   isProd = env.production;
   envName = env.envName;
   version = env.versions.app;
-  year = new Date().getFullYear();
-  logo = require('../../assets/logo.png');
-  languages = ['en', 'de', 'sk', 'fr', 'es', 'pt-br', 'zh-cn', 'he'];
-  navigation = [
-    { link: 'about', label: 'anms.menu.about' },
-    { link: 'feature-list', label: 'anms.menu.features' },
-    { link: 'examples', label: 'anms.menu.examples' }
-  ];
-  navigationSideMenu = [
-    ...this.navigation,
-    { link: 'settings', label: 'anms.menu.settings' }
+
+  theme$: Observable<string>;
+
+  showing_info = false;
+
+  apartments = [
+    {
+      title: "Rua Jaques Félix 76",
+      subtitle: "Ap.92 • Edifício Lucia • Vila Nova Conceição, São Paulo-SP",
+      image: "https://content.loft.com.br/homes/n32keo/desktop_banner.jpg"
+    },
+    {
+      title: "Alameda Campinas 1085",
+      subtitle: "Ap.62 • Edifício Tarumã • Jardim Paulista, São Paulo-SP",
+      image: "https://content.loft.com.br/homes/11nuokd/desktop_banner.jpg"
+    },
+    {
+      title: "Rua Tuim 603",
+      subtitle: "Ap.24 • Edifício Ana Lucia • Moema Pássaros, São Paulo-SP",
+      image: "https://content.loft.com.br/homes/dlkfh/desktop_banner.jpg"
+    },
+    {
+      title: "Rua Doutor Veiga Filho 815",
+      subtitle: "Ap.74 • Edifício GUARATUBA • Higienópolis, São Paulo-SP",
+      image: "https://content.loft.com.br/homes/wvx805/desktop_banner.jpg"
+    },
+    {
+      title: "Avenida Santo Amaro 1817",
+      subtitle: "Ap.53 • Edifício Vila Nova • Moema Pássaros, São Paulo-SP",
+      image: "https://content.loft.com.br/homes/7t7srn/desktop_banner.jpg"
+    },
   ];
 
-  isAuthenticated$: Observable<boolean>;
-  stickyHeader$: Observable<boolean>;
-  language$: Observable<string>;
-  theme$: Observable<string>;
+  current_apartment = this.apartments[0];
 
   constructor(
     private store: Store<AppState>,
-    private storageService: LocalStorageService
-  ) {}
-
-  private static isIEorEdgeOrSafari() {
-    return ['ie', 'edge', 'safari'].includes(browser().name);
+    private storageService: LocalStorageService, public dialog: MatDialog) {
   }
+
 
   ngOnInit(): void {
     this.storageService.testLocalStorage();
-    if (AppComponent.isIEorEdgeOrSafari()) {
-      this.store.dispatch(
-        actionSettingsChangeAnimationsPageDisabled({
-          pageAnimationsDisabled: true
-        })
-      );
-    }
-
-    this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
-    this.stickyHeader$ = this.store.pipe(select(selectSettingsStickyHeader));
-    this.language$ = this.store.pipe(select(selectSettingsLanguage));
     this.theme$ = this.store.pipe(select(selectEffectiveTheme));
   }
 
-  onLoginClick() {
-    this.store.dispatch(authLogin());
+  show_apartment(apartment: { title: string; subtitle: string; image: string; }): void {
+    this.current_apartment = apartment;
+    this.showing_info = false;
   }
 
-  onLogoutClick() {
-    this.store.dispatch(authLogout());
+  set_interest(apartment: { interest: boolean; title: string; subtitle: string; image: string; }, positive: boolean): void {
+    apartment.interest = positive;
+    let index = this.apartments.indexOf(apartment);
+    index += 1;
+    if (index == this.apartments.length) {
+      console.log('FINISH');
+      this.dialog.open(FinishDialog, {
+        width: '250px',
+        data: {count:3}
+      });
+    } else {
+      this.show_apartment(this.apartments[index]);
+    }
+
+  }
+}
+
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'finish-dialog.html',
+})
+export class FinishDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<FinishDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
-  onLanguageSelect({ value: language }) {
-    this.store.dispatch(actionSettingsChangeLanguage({ language }));
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

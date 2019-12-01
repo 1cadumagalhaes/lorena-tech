@@ -6,7 +6,7 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app/app.component';
+import {AppComponent, FinishDialog} from './app/app.component';
 
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ import { AppComponent } from './app/app.component';
     // app
     AppRoutingModule
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, FinishDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -9,154 +9,37 @@
           <div class="row">
             <div class="col-4">
 
-              <div class="row">
-                <mat-card class="mat-elevation-z0">
+              <div *ngFor="let apartment of apartments " (click)=show_apartment(apartment)>
+                <div class="row">
+                  <mat-card class="mat-elevation-z0" style="margin-top: 1px;cursor: pointer" [class.selected-card]="apartment == current_apartment">
 
-                  <mat-card-header>
+                    <mat-card-header>
 
-                    <div class="row">
-                      <div class="col">
+                      <div class="row">
+                        <div class="col">
 
-                        <img
-                          src="https://content.loft.com.br/homes/n32keo/desktop_banner.jpg"
-                        />
+                          <img src="{{apartment.image}}"/>
+
+                          <div [hidden]="!apartment.interest">
+                            <svg class="svg-icon" viewBox="0 0 20 20" style="width: 20px;position: absolute;top: 0;left: -20px;fill:goldenrod;">
+                              <path
+                                d="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z"></path>
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="col" style="font-family: proxima-nova, Arial;">
+                          <mat-card-title>{{apartment.title}}</mat-card-title>
+                          <mat-card-subtitle>{{apartment.subtitle}}
+                          </mat-card-subtitle>
+                        </div>
                       </div>
-                      <div class="col">
-                        <mat-card-title>Rua Jaques Félix 76</mat-card-title>
-                        <mat-card-subtitle>Ap.92 • Edifício Lucia • Vila Nova Conceição, São Paulo-SP
-                        </mat-card-subtitle>
-                      </div>
-                    </div>
 
-                  </mat-card-header>
+                    </mat-card-header>
 
-                  <mat-divider></mat-divider>
-                </mat-card>
-              </div>
+                  </mat-card>
+                </div>
 
-              <div class="row">
-                <mat-card class="mat-elevation-z0">
-
-                  <mat-card-header>
-
-                    <div class="row">
-                      <div class="col">
-
-                        <img
-                          src="https://content.loft.com.br/homes/n32keo/desktop_banner.jpg"
-                        />
-                      </div>
-                      <div class="col">
-                        <mat-card-title>Rua Jaques Félix 76</mat-card-title>
-                        <mat-card-subtitle>Ap.92 • Edifício Lucia • Vila Nova Conceição, São Paulo-SP
-                        </mat-card-subtitle>
-                      </div>
-                    </div>
-
-                  </mat-card-header>
-
-                  <mat-divider></mat-divider>
-                </mat-card>
-              </div>
-
-              <div class="row">
-                <mat-card class="mat-elevation-z0">
-
-                  <mat-card-header>
-
-                    <div class="row">
-                      <div class="col">
-
-                        <img
-                          src="https://content.loft.com.br/homes/n32keo/desktop_banner.jpg"
-                        />
-                      </div>
-                      <div class="col">
-                        <mat-card-title>Rua Jaques Félix 76</mat-card-title>
-                        <mat-card-subtitle>Ap.92 • Edifício Lucia • Vila Nova Conceição, São Paulo-SP
-                        </mat-card-subtitle>
-                      </div>
-                    </div>
-
-                  </mat-card-header>
-
-                  <mat-divider></mat-divider>
-                </mat-card>
-              </div>
-
-              <div class="row">
-                <mat-card class="mat-elevation-z0">
-
-                  <mat-card-header>
-
-                    <div class="row">
-                      <div class="col">
-
-                        <img
-                          src="https://content.loft.com.br/homes/n32keo/desktop_banner.jpg"
-                        />
-                      </div>
-                      <div class="col">
-                        <mat-card-title>Rua Jaques Félix 76</mat-card-title>
-                        <mat-card-subtitle>Ap.92 • Edifício Lucia • Vila Nova Conceição, São Paulo-SP
-                        </mat-card-subtitle>
-                      </div>
-                    </div>
-
-                  </mat-card-header>
-
-                  <mat-divider></mat-divider>
-                </mat-card>
-              </div>
-
-              <div class="row">
-                <mat-card class="mat-elevation-z0">
-
-                  <mat-card-header>
-
-                    <div class="row">
-                      <div class="col">
-
-                        <img
-                          src="https://content.loft.com.br/homes/n32keo/desktop_banner.jpg"
-                        />
-                      </div>
-                      <div class="col">
-                        <mat-card-title>Rua Jaques Félix 76</mat-card-title>
-                        <mat-card-subtitle>Ap.92 • Edifício Lucia • Vila Nova Conceição, São Paulo-SP
-                        </mat-card-subtitle>
-                      </div>
-                    </div>
-
-                  </mat-card-header>
-
-                  <mat-divider></mat-divider>
-                </mat-card>
-              </div>
-
-              <div class="row">
-                <mat-card class="mat-elevation-z0">
-
-                  <mat-card-header>
-
-                    <div class="row">
-                      <div class="col">
-
-                        <img
-                          src="https://content.loft.com.br/homes/n32keo/desktop_banner.jpg"
-                        />
-                      </div>
-                      <div class="col">
-                        <mat-card-title>Rua Jaques Félix 76</mat-card-title>
-                        <mat-card-subtitle>Ap.92 • Edifício Lucia • Vila Nova Conceição, São Paulo-SP
-                        </mat-card-subtitle>
-                      </div>
-                    </div>
-
-                  </mat-card-header>
-
-                  <mat-divider></mat-divider>
-                </mat-card>
+                <mat-divider></mat-divider>
               </div>
 
             </div>
@@ -164,15 +47,12 @@
 
               <mat-card>
 
-
-                <img mat-card-image
-                     src="https://content.loft.com.br/homes/n32keo/desktop_banner.jpg"
-                />
+                <img mat-card-image src="{{current_apartment.image}}"/>
 
                 <mat-card-content>
 
-                  <mat-card-title>Rua Jaques Félix 76</mat-card-title>
-                  <mat-card-subtitle>Ap.92 • Edifício Lucia • Vila Nova Conceição, São Paulo-SP
+                  <mat-card-title>{{current_apartment.title}}</mat-card-title>
+                  <mat-card-subtitle>{{current_apartment.subtitle}}
                   </mat-card-subtitle>
 
                   <div>
@@ -510,7 +390,7 @@
 
                   <div class="row" style="margin-top: 30px;">
                     <div class="col">
-                      <button mat-flat-button style="width: 100%;">
+                      <button mat-flat-button style="width: 100%;color: goldenrod;fill:goldenrod"  (click)=set_interest(current_apartment,true)>
                         <div>
                           <svg class="svg-icon" viewBox="0 0 20 20" style="width: 20px;">
                             <path
@@ -520,8 +400,9 @@
                         TENHO INTERESSE
                       </button>
                     </div>
+
                     <div class="col">
-                      <button mat-flat-button style="width: 100%;">
+                      <button mat-flat-button style="width: 100%;color: firebrick;fill:firebrick"  (click)=set_interest(current_apartment,false)>
                         <div>
                           <svg class="svg-icon" viewBox="0 0 20 20" style="width: 20px;">
                             <path
@@ -532,6 +413,9 @@
                       </button>
                     </div>
                   </div>
+
+
+
 
                 </mat-card-content>
 
