@@ -43,27 +43,32 @@ export class AppComponent implements OnInit {
     {
       title: "Rua Jaques Félix 76",
       subtitle: "Ap.92 • Edifício Lucia • Vila Nova Conceição, São Paulo-SP",
-      image: "https://content.loft.com.br/homes/n32keo/desktop_banner.jpg"
+      image: "https://content.loft.com.br/homes/n32keo/desktop_banner.jpg",
+      interest: false
     },
     {
       title: "Alameda Campinas 1085",
       subtitle: "Ap.62 • Edifício Tarumã • Jardim Paulista, São Paulo-SP",
-      image: "https://content.loft.com.br/homes/11nuokd/desktop_banner.jpg"
+      image: "https://content.loft.com.br/homes/11nuokd/desktop_banner.jpg",
+      interest: false
     },
     {
       title: "Rua Tuim 603",
       subtitle: "Ap.24 • Edifício Ana Lucia • Moema Pássaros, São Paulo-SP",
-      image: "https://content.loft.com.br/homes/dlkfh/desktop_banner.jpg"
+      image: "https://content.loft.com.br/homes/dlkfh/desktop_banner.jpg",
+      interest: false
     },
     {
       title: "Rua Doutor Veiga Filho 815",
       subtitle: "Ap.74 • Edifício GUARATUBA • Higienópolis, São Paulo-SP",
-      image: "https://content.loft.com.br/homes/wvx805/desktop_banner.jpg"
+      image: "https://content.loft.com.br/homes/wvx805/desktop_banner.jpg",
+      interest: false
     },
     {
       title: "Avenida Santo Amaro 1817",
       subtitle: "Ap.53 • Edifício Vila Nova • Moema Pássaros, São Paulo-SP",
-      image: "https://content.loft.com.br/homes/7t7srn/desktop_banner.jpg"
+      image: "https://content.loft.com.br/homes/7t7srn/desktop_banner.jpg",
+      interest: false
     },
   ];
 
@@ -80,7 +85,7 @@ export class AppComponent implements OnInit {
     this.theme$ = this.store.pipe(select(selectEffectiveTheme));
   }
 
-  show_apartment(apartment: { title: string; subtitle: string; image: string; }): void {
+  show_apartment(apartment: { interest: boolean; title: string; subtitle: string; image: string; }): void {
     this.current_apartment = apartment;
     this.showing_info = false;
   }

@@ -1,5 +1,5 @@
 {
-  "name": "angular-ngrx-material-starter",
+  "name": "lorena",
   "version": "8.3.1",
   "license": "MIT",
   "scripts": {
@@ -12,11 +12,11 @@
     "test": "ng lint && ng test --configuration=test",
     "watch": "ng test --configuration=test --browsers ChromeHeadless --watch",
     "e2e": "ng e2e",
-    "ci": "npm run format:test && ng lint && ng test --configuration=test --browsers ChromeTravisCi --code-coverage && npm run e2e && npm run build:prod -- --deploy-url /angular-ngrx-material-starter/ --base-href /angular-ngrx-material-starter",
+    "ci": "npm run format:test && ng lint && ng test --configuration=test --browsers ChromeTravisCi --code-coverage && npm run e2e && npm run build:prod -- --deploy-url /lorena/ --base-href /lorena",
     "format:write": "prettier projects/**/*.{ts,json,md,scss} --write",
     "format:test": "prettier projects/**/*.{ts,json,md,scss} --list-different",
     "release": "standard-version && git push --follow-tags origin master",
-    "analyze": "npm run build:prod -- --stats-json && webpack-bundle-analyzer ./dist/angular-ngrx-material-starter/stats-es2015.json",
+    "analyze": "npm run build:prod -- --stats-json && webpack-bundle-analyzer ./dist/lorena/stats-es2015.json",
     "server": "node ./projects/server/server.js",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate && node .all-contributors-html.js",
