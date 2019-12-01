@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google-cloud/bigquery": "^4.4.0"
+    "@google-cloud/bigquery": "^4.4.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5",
+    "utf8": "^3.0.0"
   }
 }

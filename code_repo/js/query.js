@@ -25,14 +25,14 @@ exports.getData = async (req, res) => {
          { param: 'tipo', pos: 6, order: 'DESC' }
      ]
      
-     let { longitude, latitude, precomaximo } = params;
+     let { longitude, latitude, precomaximo,  } = params;
      let head = params.priority;
      if (head) {
          head = stringToArray(head);
          parametros = orderParams(parametros, head);
      }
- 
-     let garages = params.garages? params.garages: false, area = params.area? params.area: false, tipo = params.tipo? params.tipo: false;
+     let tipoConsulta = params.consulta?params.consulta:false
+     let garages = params.garages? params.garages: false, area = params.area? params.area: false, tipo = params.tipo? params.tipo: false, quartos = params.quartos ? params.quartos : 1;
  
      let query = `WITH D AS 
                      (   WITH geo AS (
@@ -56,6 +56,7 @@ exports.getData = async (req, res) => {
                          D
                      WHERE
                          distance <= 1000  
+                         AND rooms>=${quartos}
                          ${precomaximo?"AND (minimum_estimate<="+precomaximo+" AND minimum_estimate+"+precomaximo*0.1+"<="+precomaximo+')':''}
                          ${garages?"AND garages>="+garages:''}
                          ${area?"AND useful_area>="+area:''}
@@ -63,7 +64,13 @@ exports.getData = async (req, res) => {
                      ORDER BY
                          ${paramsToString(parametros)}
                      LIMIT 10`;
- 
+                        
+    if(tipoConsulta == "precominmax"){
+        query = query.replace(/ORDER BY([\w\n\s="',]+)LIMIT([\s\d]+);?/g,'');
+        let final = `SELECT MAX(minimum_estimate) as maximum_value, MIN(minimum_estimate) as minimum_value, COUNT(minimum_estimate) as number FROM getMinMax; `;
+        query = `WITH getMinMax AS (${query}) ${final}`;
+
+    }
      return query;
  }
  
@@ -104,5 +111,5 @@ exports.getData = async (req, res) => {
      return rows;
  }
 
- //?longitude=-46.6623264&latitude=-23.5537803&precomaximo=800000&priority=[quartos]&garages=1&area=50&tipo=apartamento
+ //?longitude=-46.6623264&latitude=-23.5537803&precomaximo=800000&priority=[quartos]&garages=1&area=50&tipo=apartamento&dormitorios=1
  
