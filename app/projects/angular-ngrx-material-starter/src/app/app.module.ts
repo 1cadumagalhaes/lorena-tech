@@ -22,6 +22,7 @@ import {AppComponent, FinishDialog} from './app/app.component';
     AppRoutingModule
   ],
   declarations: [AppComponent, FinishDialog],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [FinishDialog]
 })
 export class AppModule {}

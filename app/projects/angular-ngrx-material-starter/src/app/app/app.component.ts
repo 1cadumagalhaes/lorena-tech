@@ -24,10 +24,6 @@ import {
 } from '../core/settings/settings.actions';
 
 
-export interface DialogData {
-  count:number
-}
-
 @Component({
   selector: 'anms-root',
   templateUrl: './app.component.html',
@@ -96,7 +92,7 @@ export class AppComponent implements OnInit {
     if (index == this.apartments.length) {
       console.log('FINISH');
       this.dialog.open(FinishDialog, {
-        width: '250px',
+        // width: '600px',
         data: {count:3}
       });
     } else {
@@ -114,8 +110,7 @@ export class AppComponent implements OnInit {
 export class FinishDialog {
 
   constructor(
-    public dialogRef: MatDialogRef<FinishDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    public dialogRef: MatDialogRef<FinishDialog>) {
   }
 
   onNoClick(): void {
