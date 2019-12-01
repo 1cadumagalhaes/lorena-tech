@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const compression = require('compression');
 
-const CONTEXT = `/${process.env.CONTEXT || 'angular-ngrx-material-starter'}`;
+const CONTEXT = `/${process.env.CONTEXT || 'lorena-tech/lorena'}`;
 const PORT = process.env.PORT || 4000;
 
 const app = express();
