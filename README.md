@@ -18,7 +18,7 @@ Desde o início, para quem ainda não sabe qual é o apartamento perfeito, até 
 Ela também vai poder tirar as suas dúvidas em relação a todo o processo!
 
 
-![lorena](../lorena-tech/img/lorena.png)
+![lorena](img/lorena.png)
 
 # O que ela já sabe fazer?
 
